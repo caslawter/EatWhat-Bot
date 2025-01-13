@@ -5,7 +5,6 @@ import axios from "axios";
 
 //For env File
 dotenv.config({ path: ".env.local" });
-console.log(process.env.PORT);
 
 const app: Application = express();
 const port = process.env.PORT || 8000;
@@ -18,9 +17,9 @@ app.get("/", (req: Request, res: Response) => {
 
 app.get("/api/places", async (req: Request, res: Response) => {
     try {
-        const { lat, lng, radius, min, max } = req.query;
+        const { lat, lng, radius, min, max, keyword } = req.query;
         console.log(radius);
-        
+
         const response = await axios.get(
             "https://maps.googleapis.com/maps/api/place/nearbysearch/json",
             {
@@ -32,6 +31,7 @@ app.get("/api/places", async (req: Request, res: Response) => {
                     open_now: true,
                     minprice: min,
                     maxprice: max,
+                    keyword: keyword,
                 },
             }
         );
