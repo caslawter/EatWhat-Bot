@@ -5,6 +5,8 @@ import React from "react";
 import { useWebApp } from "@vkruglikov/react-telegram-web-app";
 import { useThemeParams } from "@vkruglikov/react-telegram-web-app";
 
+
+
 import { Routes, Route } from "react-router-dom";
 import Landing from "./pages/Landing";
 import About from "./pages/About";
