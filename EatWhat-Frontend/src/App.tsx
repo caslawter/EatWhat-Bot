@@ -11,6 +11,12 @@ import RestaurantList from "./pages/RestaurantList";
 import RestaurantDetail from "./pages/RestaurantDetail";
 
 function App() {
+
+  useEffect(() => {
+    console.log(import.meta.env.VITE_BACKEND_PORT)
+    
+  },[])
+
   return (
     <Routes>
       <Route path='/' element = {<Landing/>}/>
