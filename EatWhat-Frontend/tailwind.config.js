@@ -30,7 +30,7 @@ export default {
       colors: {
         customOrange: {
           light: '#fdba74',    // Slightly lighter red
-          dark: '#f97316',         // Slightly darker red
+          dark: '#fb923c',         // Slightly darker red
         },
         customBlack: 'rgb(24, 24, 56)',  // Define custom black color
         customYellow: '#FACC15', // Define custom yellow color
