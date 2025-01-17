@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import LandingIcon from '../../public/cutlery.png'
+import { BackButton } from '@vkruglikov/react-telegram-web-app';
+
 // TODO: font type
 function Landing() {
   return (
@@ -9,6 +11,7 @@ function Landing() {
       <div className='absolute gap-3 top-40 left-1/2 -translate-x-1/2 flex flex-col items-center '>
         <img src={LandingIcon} alt="" className=' bg-gray-400 rounded-full size-60'/>
         <h1 className=' text-orange-400 font-extrabold w-96'>Eat What Sia?</h1>
+        <BackButton onClick={() => console.log('Hello, I am back button!')} />;
       </div>
       <div className='absolute bottom-12'>
         <button className=' font-bold p-2 text-xl rounded-3xl w-11/12 bg-customOrange-dark text-white hover:bg-customOrange-light '>Get Location</button>
