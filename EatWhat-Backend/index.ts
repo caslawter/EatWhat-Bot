@@ -42,5 +42,5 @@ app.get("/api/places", async (req: Request, res: Response) => {
 });
 
 app.listen(port, () => {
-    console.log(`Server is Fire at http://localhost:${port}`);
+    console.log(`Server is firing at http://localhost:${port}`);
 });

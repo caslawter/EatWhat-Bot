@@ -1,0 +1,31 @@
+/* Add the font import */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap');
+
+/* Tailwind directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+	height: 100dvh;
+	width: 100%;
+	min-width: fit-content;
+	margin: 0;
+	padding: 0;
+	font-family: 'Open Sans', sans-serif; /* Apply Open Sans globally */
+}
+
+#root {
+	height: 100dvh;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
