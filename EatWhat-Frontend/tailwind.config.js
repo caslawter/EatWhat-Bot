@@ -28,9 +28,9 @@ export default {
         '3xl': '2000px'
       },
       colors: {
-        customRed: {
-          light: 'rgb(255, 102, 102)',    // Slightly lighter red
-          dark: 'rgb(153, 0, 0)',         // Slightly darker red
+        customOrange: {
+          light: '#fdba74',    // Slightly lighter red
+          dark: '#f97316',         // Slightly darker red
         },
         customBlack: 'rgb(24, 24, 56)',  // Define custom black color
         customYellow: '#FACC15', // Define custom yellow color
