@@ -26,28 +26,7 @@ function App() {
     bg_color: themeParams.bg_color,
   });
 
-  useEffect(() => {
-    async function getGoogleResults() {
-      try {
-        let results = await axios.get(
-          `${import.meta.env.VITE_BACKEND_PORT}/api/places`,
-          {
-            params: {
-              lat: 1.2976174485362484,
-              lng: 103.85488811330647,
-              radius: 5000,
-              min: 1,
-              max: 1,
-            },
-          }
-        );
-        console.log(results);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    getGoogleResults();
-  }, []);
+  
 
   useEffect(() => {
     console.log(import.meta.env.VITE_BACKEND_PORT);
@@ -58,7 +37,7 @@ function App() {
       <Route path="/" element={<Landing />} />
       <Route path="/about" element={<About />} />
       <Route path="/map" element={<Map />} />
-      <Route path="/prefereence" element={<Preference />} />
+      <Route path="/preference" element={<Preference />} />
       <Route path="/restaurantList" element={<RestaurantList />} />
       <Route path="/restaurantList/:id" element={<RestaurantDetail />} />
     </Routes>
