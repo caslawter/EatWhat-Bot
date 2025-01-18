@@ -409,34 +409,46 @@ const Preference = (): JSX.Element => {
         </Box>
         <Box>
           <Button
-            variant="text"
+            variant="contained"
             onClick={() => {
-              {
-                navigate("/RestaurantList", {
-                  state: {
-                    lat,
-                    lng,
-                    preferences,
-                    priceRange,
-                    radius,
-                  },
-                });
-              }
+              navigate("/RestaurantList", {
+                state: {
+                  lat,
+                  lng,
+                  preferences,
+                  priceRange,
+                  radius,
+                },
+              });
+            }}
+            fullWidth
+            sx={{
+              bgcolor: "#FFA500", // Orange background
+              color: "white", // White text
+              fontWeight: "bold",
+              "&:hover": {
+                bgcolor: "#FFB84D", // Lighter orange on hover
+              },
             }}
           >
             Get Restaurants!
           </Button>
         </Box>
 
-
         <MainButton
           text="Get Restaurants!"
           onClick={() => {
             navigate("/restaurantList", {
-              state: { lat, lng, preferences, priceRange, radius },
+              state: {
+                lat,
+                lng,
+                preferences,
+                priceRange,
+                radius,
+              },
             });
           }}
-          color='#fb923c'
+          color="#fb923c"
         />
       </div>
     </>
