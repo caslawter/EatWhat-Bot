@@ -1,10 +1,21 @@
 import express, { Express, Request, Response, Application } from "express";
+const { message } = require('telegraf/filters')
 import dotenv from "dotenv";
 import cors from "cors";
 import axios from "axios";
+import { Context, Telegraf, } from 'telegraf';
+import { link } from "telegraf/format";
+
+// Define your own context type
+interface ctx extends Context {
+    myProp?: string
+    myOtherProp?: number
+}
 
 //For env File
 dotenv.config({ path: ".env.local" });
+
+const bot = new Telegraf(process.env.BOT_TOKEN)
 
 const app: Application = express();
 const port = process.env.PORT || 8000;
@@ -60,6 +71,13 @@ app.get("/api/searchArea", async (req: Request, res: Response) => {
         res.status(500).json({ error: error.message });
     }
 });
+
+bot.start(ctx => ctx.reply("In order to help you decide where to eat, please allow location permissions when prompted as you press the link!\n" + link("Launch", "https://t.me/kez_testbot/testapp")))
+bot.launch()
+
+// Enable graceful stop
+process.once('SIGINT', () => bot.stop('SIGINT'))
+process.once('SIGTERM', () => bot.stop('SIGTERM'))
 
 app.listen(port, () => {
     console.log(`Server is firing at http://localhost:${port}`);
