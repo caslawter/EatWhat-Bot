@@ -48,9 +48,11 @@ const RestaurantCard = ({
                 {/* top and down */}
                 <div className="relative flex item-center text-center ">
                     {/* top */}
-                    <h3 className="font-bold max-w-full text-lg inline-block text-ellipsis w-11/12 overflow-hidden  text-left">
-                        {restaurant.name}
-                    </h3>
+                    <Link to={`/restaurantList/${restaurant.id}`}>
+                        <h3 className="font-bold max-w-full text-lg inline-block text-ellipsis w-11/12 overflow-hidden  text-left">
+                            {restaurant.name}
+                        </h3>
+                    </Link>
 
                     <div className="flex items-center h-full">
                         <FaStar className="text-customOrange-dark" />
