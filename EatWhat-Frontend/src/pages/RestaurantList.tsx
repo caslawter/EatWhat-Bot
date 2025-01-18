@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import RestaurantDetail from "./RestaurantDetail"; // this page opens up when clicked on the car
 import axios from "axios";
 import DialogueBox from "../components/DialogueBox";
@@ -74,6 +74,9 @@ const cuisineTypes: string[] = [
 const RestaurantList = (): JSX.Element => {
   const [restaurantList, setRestaurantList] = useState<RestaurantObject[]>([]);
   const navigate = useNavigate();
+  const { state } = useLocation();
+  const { lat, lng } = state;
+
   useEffect(() => {
     async function getGoogleResults() {
       try {
@@ -81,8 +84,8 @@ const RestaurantList = (): JSX.Element => {
           `${import.meta.env.VITE_BACKEND_PORT}/api/searchArea`,
           {
             params: {
-              lat: 1.2976174485362484,
-              lng: 103.85488811330647,
+              lat: lat,
+              lng: lng,
               radius: 5000,
               min: 1,
               max: 1,

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import RestaurantDetail from "./RestaurantDetail";
 import axios from "axios";
-import { BackButton, useWebApp } from "@vkruglikov/react-telegram-web-app";
+import { BackButton, MainButton, useWebApp } from "@vkruglikov/react-telegram-web-app";
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 import FormGroup from '@mui/material/FormGroup';
@@ -16,7 +16,7 @@ const Preference = (): JSX.Element => {
   console.log(lat);
   console.log(lng);
 
-  const [value, setValue] = React.useState<number[]>([1,2]);
+  const [value, setValue] = React.useState<number[]>([1, 2]);
   const minDistance = 1;
   const handleChange = (
     event: Event,
@@ -50,7 +50,7 @@ const Preference = (): JSX.Element => {
     {
       value: 3,
       label: "$$$"
-    },    {
+    }, {
       value: 4,
       label: "$$$$"
     },
@@ -85,24 +85,24 @@ const Preference = (): JSX.Element => {
       <Box sx={{ height: 100 }}></Box>
       <Box sx={{ width: 500, height: 500 }}>
 
-    <FormGroup>
-      <FormControlLabel control={<Checkbox defaultChecked />} label="Vegan" />
-      <FormControlLabel control={<Checkbox />} label="Vegetarian" />
-      <FormControlLabel control={<Checkbox />} label="Halal" />
-      <FormControlLabel control={<Checkbox defaultChecked />} label="No beef" />
-      <FormControlLabel control={<Checkbox />} label="Special Diet" />
-    </FormGroup>
+        <FormGroup>
+          <FormControlLabel control={<Checkbox defaultChecked />} label="Vegan" />
+          <FormControlLabel control={<Checkbox />} label="Vegetarian" />
+          <FormControlLabel control={<Checkbox />} label="Halal" />
+          <FormControlLabel control={<Checkbox defaultChecked />} label="No beef" />
+          <FormControlLabel control={<Checkbox />} label="Special Diet" />
+        </FormGroup>
 
 
-    <FormGroup>
-      <FormControlLabel control={<Checkbox defaultChecked />} label="Chinese" />
-      <FormControlLabel control={<Checkbox />} label="Japanese" />
-      <FormControlLabel control={<Checkbox />} label="Korean" />
-      <FormControlLabel control={<Checkbox defaultChecked />} label="Italian" />
-      <FormControlLabel control={<Checkbox />} label="Mexican" />
-      <FormControlLabel control={<Checkbox />} label="Fast Food" />
-      <FormControlLabel control={<Checkbox />} label="Dessert" />
-    </FormGroup>
+        <FormGroup>
+          <FormControlLabel control={<Checkbox defaultChecked />} label="Chinese" />
+          <FormControlLabel control={<Checkbox />} label="Japanese" />
+          <FormControlLabel control={<Checkbox />} label="Korean" />
+          <FormControlLabel control={<Checkbox defaultChecked />} label="Italian" />
+          <FormControlLabel control={<Checkbox />} label="Mexican" />
+          <FormControlLabel control={<Checkbox />} label="Fast Food" />
+          <FormControlLabel control={<Checkbox />} label="Dessert" />
+        </FormGroup>
 
         <Slider
           aria-label="Radius"
@@ -129,6 +129,10 @@ const Preference = (): JSX.Element => {
           max={4}
         />
       </Box>
+      <MainButton
+        text="Choose this location"
+        onClick={() => { navigate('/RestaurantList', { state: { lat, lng } }) }}
+      />
     </div>
   );
 };

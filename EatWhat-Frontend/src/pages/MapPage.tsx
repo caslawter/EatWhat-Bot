@@ -38,7 +38,7 @@ function MapPage() {
         >
           <AdvancedMarker ref={markerRef} position={null} />
           {position && <MainButton
-            text="Select Location"
+            text="Choose this location"
             onClick={() => { navigate('/Preference', { state: { lat: position.lat, lng: position.lng } }) }}
           />}
         </Map>
