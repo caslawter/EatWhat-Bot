@@ -23,10 +23,6 @@ function Landing() {
   return (
     <>
       <BackButton onClick={() => navigate(-1)}/>
-      <MainButton
-        text="CLICK ME"
-        onClick={() => console.log('Hello, I am button!')}
-      />
       <div className='relative text-4xl h-full'>
         <Link to='/about' className='uppercase text-base underline font-semibold absolute top-0 right-0 text-blue-800 hover:text-blue-400'>About</Link>
         <div className='absolute gap-3 top-20 left-1/2 -translate-x-1/2 flex flex-col items-center '>
