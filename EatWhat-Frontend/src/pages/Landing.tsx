@@ -1,28 +1,60 @@
-import React, { useEffect } from 'react'
-import { Link,useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import LandingIcon from '../../public/cutlery.png'
 import { BackButton, MainButton, useWebApp } from '@vkruglikov/react-telegram-web-app';
 
 
 // TODO: font type
 function Landing() {
+  const [userLocation, setUserLocation] = useState<{
+    latitude: number;
+    longitude: number;
+  } | null>(null);;
   const navigate = useNavigate();
   const WebApp = useWebApp();
 
   console.log(WebApp.LocationManager.getLocation);
-  useEffect(()=>{
+  console.log(WebApp.LocationManager.isInited);
+
+  const getUserLocation = () => {
+    if (navigator.geolocation) {
+      // what to do if supported
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          // what to do once we have the position
+          const { latitude, longitude } = position.coords;
+          setUserLocation({ latitude, longitude });
+          
+        },
+        (error) => {
+          // display an error if we cant get the users position
+          console.error('Error getting user location:', error);
+        }
+      );
+    }
+    else {
+      // display an error if not supported
+      console.error('Geolocation is not supported by this browser.');
+    }
+
+  }
+
+  // console.log(window.Telegram.WebApp);
+  useEffect(() => {
     // const isRequested = WebApp.LocationManager.isAccessRequested()
     // console.log("isRequested ==> ", isRequested);
-  },[])
+  }, [])
 
   function onGetCurrentLocation() {
-    navigate('/Preference',{ state: { lat: 1.2976174485362484, lng: 103.85488811330647 }})
+    getUserLocation();
+    console.log(userLocation); // Use this for user lat and long
+    navigate('/Preference', { state: { lat: 1.2976174485362484, lng: 103.85488811330647 } })
   }
 
 
   return (
     <>
-      <BackButton onClick={() => navigate(-1)}/>
+      <BackButton onClick={() => navigate(-1)} />
       <div className='relative text-4xl h-full'>
         <Link to='/about' className='uppercase text-base underline font-semibold absolute top-0 right-0 text-blue-800 hover:text-blue-400'>About</Link>
         <div className='absolute gap-3 top-20 left-1/2 -translate-x-1/2 flex flex-col items-center '>
