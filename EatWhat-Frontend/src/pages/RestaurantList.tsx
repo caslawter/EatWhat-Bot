@@ -83,8 +83,8 @@ const RestaurantList = (): JSX.Element => {
   const [restaurantList, setRestaurantList] = useState<RestaurantObject[]>([]);
   const navigate = useNavigate();
   const { state } = useLocation();
-  const { lat, lng } = state;
-
+  const { lat, lng, preferences, priceRange, radius } = state;
+  
   useEffect(() => {
     async function getGoogleResults() {
       try {
@@ -94,9 +94,9 @@ const RestaurantList = (): JSX.Element => {
             params: {
               lat: lat,
               lng: lng,
-              radius: 5000,
-              min: 1,
-              max: 1,
+              radius: radius,
+              min: priceRange[0],
+              max: priceRange[1],
             },
           }
         );
