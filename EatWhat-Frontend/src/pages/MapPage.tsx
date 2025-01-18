@@ -42,8 +42,8 @@ function MapPage() {
             onClick={() => { navigate('/Preference', { state: { lat: position.lat, lng: position.lng } }) }}
           />}
         </Map>
-        <MapControl position={ControlPosition.TOP}>
-          <div className="autocomplete-control">
+        <MapControl position={ControlPosition.LEFT}>
+          <div className="autocomplete-control pt-2 pl-2 min-h-40">
             <PlaceAutocomplete onPlaceSelect={setSelectedPlace} />
           </div>
         </MapControl>
@@ -109,7 +109,7 @@ const PlaceAutocomplete = ({ onPlaceSelect }: PlaceAutocompleteProps) => {
 
   return (
     <div className="autocomplete-container">
-      <input ref={inputRef} />
+      <input className="h-8 rounded-md text-black p-1.5 font-bagel text-lg" ref={inputRef} />
     </div>
   );
 };
