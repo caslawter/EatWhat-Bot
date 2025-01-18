@@ -55,9 +55,6 @@ function Landing() {
   return (
     <>
       <BackButton onClick={() => navigate(-1)} />
-        <Link to="/restaurantList">
-                <p>go to restaurant list</p>
-                </Link>
       <div className='relative text-4xl h-full'>
         <Link to='/about' className='uppercase text-base underline font-semibold absolute top-0 right-0 text-blue-800 hover:text-blue-400'>
           About
