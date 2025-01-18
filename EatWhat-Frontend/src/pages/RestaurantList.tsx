@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import RestaurantDetail from "./RestaurantDetail"; // this page opens up when clicked on the car
 import axios from "axios";
 import DialogueBox from "../components/DialogueBox";
@@ -64,6 +64,7 @@ const RestaurantCard = (): JSX.Element => {
 
 const RestaurantList = (): JSX.Element => {
   // const [restaurantDetail,setRestaurantList]=useState<null | RestaurantObject >(null);
+  const navigate = useNavigate();
   useEffect(() => {
     async function getGoogleResults() {
       try {
@@ -89,7 +90,7 @@ const RestaurantList = (): JSX.Element => {
 
   return (
     <>
-
+      <BackButton onClick={() => navigate(-1)}/>
       <div className="">
         {/* elements at the top */}
         <div className="flex mb-10">
