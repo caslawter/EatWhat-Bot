@@ -16,6 +16,7 @@ import {
   Box,
   Stack,
 } from "@mui/material";
+import { ClassNames } from "@emotion/react";
 
 const Preference = (): JSX.Element => {
   const navigate = useNavigate();
@@ -135,170 +136,272 @@ const Preference = (): JSX.Element => {
 
   return (
     <>
-    
-   
-    <div>
-      <BackButton onClick={() => navigate(-1)} />
-      <Box sx={{ height: 100 }}></Box>
-      <Box sx={{ width: 500, height: 500 }}>
-        <FormGroup>
-          <FormControlLabel
-            control={
-              <Checkbox
-                name="vegan"
-                checked={preferences.vegan}
-                onChange={handleCheckboxChange}
-              />
-            }
-            label="Vegan"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                name="vegetarian"
-                checked={preferences.vegetarian}
-                onChange={handleCheckboxChange}
-              />
-            }
-            label="Vegetarian"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                name="halal"
-                checked={preferences.halal}
-                onChange={handleCheckboxChange}
-              />
-            }
-            label="Halal"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                name="noBeef"
-                checked={preferences.noBeef}
-                onChange={handleCheckboxChange}
-              />
-            }
-            label="No beef"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                name="specialDiet"
-                checked={preferences.specialDiet}
-                onChange={handleCheckboxChange}
-              />
-            }
-            label="Special Diet"
-          />
-        </FormGroup>
+      <div>
+        <BackButton onClick={() => navigate(-1)} />
+        {/* <Box sx={{ height: 100 }}></Box> */}
+        <h2 className="text-lg font-bold mb-4 flex justify-center">
+          Choose Your Preferences!
+        </h2>
+        <Box className="p-2 mb-10">
+          <FormGroup className="mb-5">
+            <FormControlLabel
+              control={
+                <Checkbox
+                  name="vegan"
+                  checked={preferences.vegan}
+                  onChange={handleCheckboxChange}
+                  sx={{
+                    color: "orange",
+                    "&.Mui-checked": {
+                      color: "orange",
+                    },
+                  }}
+                />
+              }
+              label="Vegan"
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  name="vegetarian"
+                  checked={preferences.vegetarian}
+                  onChange={handleCheckboxChange}
+                  sx={{
+                    color: "orange",
+                    "&.Mui-checked": {
+                      color: "orange",
+                    },
+                  }}
+                />
+              }
+              label="Vegetarian"
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  name="halal"
+                  checked={preferences.halal}
+                  onChange={handleCheckboxChange}
+                  sx={{
+                    color: "orange",
+                    "&.Mui-checked": {
+                      color: "orange",
+                    },
+                  }}
+                />
+              }
+              label="Halal"
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  name="noBeef"
+                  checked={preferences.noBeef}
+                  onChange={handleCheckboxChange}
+                  sx={{
+                    color: "orange",
+                    "&.Mui-checked": {
+                      color: "orange",
+                    },
+                  }}
+                />
+              }
+              label="No beef"
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  name="specialDiet"
+                  checked={preferences.specialDiet}
+                  onChange={handleCheckboxChange}
+                  sx={{
+                    color: "orange",
+                    "&.Mui-checked": {
+                      color: "orange",
+                    },
+                  }}
+                />
+              }
+              label="Special Diet"
+            />
+          </FormGroup>
 
-        <FormGroup>
-          <FormControlLabel
-            control={
-              <Checkbox
-                name="chinese"
-                checked={preferences.chinese}
-                onChange={handleCheckboxChange}
-              />
-            }
-            label="Chinese"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                name="japanese"
-                checked={preferences.japanese}
-                onChange={handleCheckboxChange}
-              />
-            }
-            label="Japanese"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                name="korean"
-                checked={preferences.korean}
-                onChange={handleCheckboxChange}
-              />
-            }
-            label="Korean"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                name="italian"
-                checked={preferences.italian}
-                onChange={handleCheckboxChange}
-              />
-            }
-            label="Italian"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                name="mexican"
-                checked={preferences.mexican}
-                onChange={handleCheckboxChange}
-              />
-            }
-            label="Mexican"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                name="fastFood"
-                checked={preferences.fastFood}
-                onChange={handleCheckboxChange}
-              />
-            }
-            label="Fast Food"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                name="dessert"
-                checked={preferences.dessert}
-                onChange={handleCheckboxChange}
-              />
-            }
-            label="Dessert"
-          />
-        </FormGroup>
+          <FormGroup className="mb-5">
+            <FormControlLabel
+              control={
+                <Checkbox
+                  name="chinese"
+                  checked={preferences.chinese}
+                  onChange={handleCheckboxChange}
+                  sx={{
+                    color: "orange",
+                    "&.Mui-checked": {
+                      color: "orange",
+                    },
+                  }}
+                />
+              }
+              label="Chinese"
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  name="japanese"
+                  checked={preferences.japanese}
+                  onChange={handleCheckboxChange}
+                  sx={{
+                    color: "orange",
+                    "&.Mui-checked": {
+                      color: "orange",
+                    },
+                  }}
+                />
+              }
+              label="Japanese"
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  name="korean"
+                  checked={preferences.korean}
+                  onChange={handleCheckboxChange}
+                  sx={{
+                    color: "orange",
+                    "&.Mui-checked": {
+                      color: "orange",
+                    },
+                  }}
+                />
+              }
+              label="Korean"
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  name="italian"
+                  checked={preferences.italian}
+                  onChange={handleCheckboxChange}
+                  sx={{
+                    color: "orange",
+                    "&.Mui-checked": {
+                      color: "orange",
+                    },
+                  }}
+                />
+              }
+              label="Italian"
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  name="mexican"
+                  checked={preferences.mexican}
+                  onChange={handleCheckboxChange}
+                  sx={{
+                    color: "orange",
+                    "&.Mui-checked": {
+                      color: "orange",
+                    },
+                  }}
+                />
+              }
+              label="Mexican"
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  name="fastFood"
+                  checked={preferences.fastFood}
+                  onChange={handleCheckboxChange}
+                  sx={{
+                    color: "orange",
+                    "&.Mui-checked": {
+                      color: "orange",
+                    },
+                  }}
+                />
+              }
+              label="Fast Food"
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  name="dessert"
+                  checked={preferences.dessert}
+                  onChange={handleCheckboxChange}
+                  sx={{
+                    color: "orange",
+                    "&.Mui-checked": {
+                      color: "orange",
+                    },
+                  }}
+                />
+              }
+              label="Dessert"
+            />
+          </FormGroup>
 
-        <Slider
-          aria-label="Radius"
-          value={radius}
-          onChange={handleRadiusChange}
-          valueLabelDisplay="auto"
-          step={1000}
-          min={1000}
-          max={5000}
-        />
+          <div>
+            <p>Budget</p>
+            <Slider
+              aria-label="Radius"
+              value={radius}
+              onChange={handleRadiusChange}
+              valueLabelDisplay="auto"
+              step={1000}
+              min={1000}
+              max={5000}
+              sx={{
+                color: "orange",
+                "& .MuiSlider-thumb": {
+                  backgroundColor: "orange",
+                },
+                "& .MuiSlider-track": {
+                  backgroundColor: "orange",
+                },
+                "& .MuiSlider-rail": {
+                  backgroundColor: "lightgray",
+                },
+              }}
+            />
+          </div>
 
-        <Slider
-          getAriaLabel={() => "Price range"}
-          value={priceRange}
-          onChange={handleChange}
-          valueLabelDisplay="auto"
-          getAriaValueText={valuetext}
-          marks={price_range}
-          step={1}
-          shiftStep={1}
-          min={1}
-          max={4}
-        />
-      </Box>
-
-      <MainButton
-        text="Get Restaurants!"
-        onClick={() => {
-          navigate("/RestaurantList", { state: { lat, lng } });
-        }}
-      />
-    </div>
-    <Box>
+          <div>
+            <p>Distance</p>
+            <Slider
+              className="text-white"
+              getAriaLabel={() => "Price range"}
+              value={priceRange}
+              onChange={handleChange}
+              valueLabelDisplay="auto"
+              getAriaValueText={valuetext}
+              marks={price_range}
+              step={1}
+              shiftStep={1}
+              min={1}
+              max={4}
+              sx={{
+                color: "orange",
+                "& .MuiSlider-thumb": {
+                  backgroundColor: "orange",
+                },
+                "& .MuiSlider-track": {
+                  backgroundColor: "orange",
+                },
+                "& .MuiSlider-rail": {
+                  backgroundColor: "lightgray",
+                },
+                "& .MuiSlider-mark": {
+                  backgroundColor: "orange",
+                },
+                "& .MuiSlider-markLabel": {
+                  color: "orange",
+                },
+              }}
+            />
+          </div>
+        </Box>
+        <Box>
         <Button
           variant="text"
           onClick={() => {
@@ -318,6 +421,18 @@ const Preference = (): JSX.Element => {
           Get Restaurants!
         </Button>
       </Box>
+
+
+        <MainButton
+          text="Get Restaurants!"
+          onClick={() => {
+            navigate("/restaurantList", {
+              state: { lat, lng, preferences, priceRange, radius },
+            });
+          }}
+          color='#fb923c'
+        />
+      </div>
     </>
   );
 };

@@ -8,6 +8,11 @@ import { FaStar } from "react-icons/fa6";
 import { BackButton, useWebApp } from "@vkruglikov/react-telegram-web-app";
 import type { ModalOptions, ModalInterface } from "flowbite";
 import { input } from "flowbite";
+import {
+  BackButton,
+  MainButton,
+  useWebApp,
+} from "@vkruglikov/react-telegram-web-app";
 
 // @ts-ignore
 
@@ -33,13 +38,16 @@ const RestaurantCard = ({ restaurant }): JSX.Element => {
   return (
     <div className="border-b pb-2 border-white flex items-center w-full justify-between align-middle mb-5">
       {/* left and right */}
+
       <div className="flex flex-col gap-2 w-10/12">
         {/* top and down */}
         <div className="relative flex item-center text-center ">
           {/* top */}
-          <h3 className="font-bold max-w-full text-lg inline-block text-ellipsis w-11/12 overflow-hidden  text-left">
-            {restaurant.name}
-          </h3>
+          <Link to={`/restaurantList/${restaurant.id}`}>
+            <h3 className="font-bold max-w-full text-lg inline-block text-ellipsis w-11/12 overflow-hidden  text-left">
+              {restaurant.name}
+            </h3>
+          </Link>
 
           <div className="flex items-center h-full">
             <FaStar className="text-customOrange-dark" />
@@ -84,7 +92,7 @@ const RestaurantList = (): JSX.Element => {
   const navigate = useNavigate();
   const { state } = useLocation();
   const { lat, lng, preferences, priceRange, radius } = state;
-  
+
   useEffect(() => {
     async function getGoogleResults() {
       try {
@@ -169,15 +177,15 @@ const RestaurantList = (): JSX.Element => {
       </div>
 
       {/* Next Button */}
-      <div className="flex justify-end p-4">
-        <Link
-          to="/Map"
-          className="font-bold p-2 text-xl rounded-3xl w-full bg-customOrange-dark text-white hover:bg-customOrange-light text-center"
-        >
-          Next
-        </Link>
+      <MainButton
+          text="Get Restaurants!"
+          onClick={() => {
+            navigate("/restaurantDetail");
+          }}
+          color='#fb923c'
+        />
       </div>
-    </div>
+    
   );
 };
 
