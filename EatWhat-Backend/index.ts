@@ -20,7 +20,17 @@ const bot = new Telegraf(process.env.BOT_TOKEN)
 const app: Application = express();
 const port = process.env.PORT || 8000;
 
-app.use(cors());
+app.use(cors({
+    origin: 'https://charmed-tiger-open.ngrok-free.app',
+    methods: 'GET,POST,PUT,DELETE,OPTIONS',
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    exposedHeaders: ['Access-Control-Allow-Private-Network']
+  }));
+  
+  app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Private-Network', 'true'); // Enable private network access
+    next();
+  });;
 
 app.get("/", (req: Request, res: Response) => {
     res.send("Welcome to Express & TypeScript Server");
