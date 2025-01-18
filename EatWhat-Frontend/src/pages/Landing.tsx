@@ -16,26 +16,21 @@ function Landing() {
   console.log(WebApp.LocationManager.getLocation);
   console.log(WebApp.LocationManager.isInited);
 
-  const getUserLocation = () => {
-    if (navigator.geolocation) {
-      // what to do if supported
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          // what to do once we have the position
-          const { latitude, longitude } = position.coords;
-          setUserLocation({ latitude, longitude });
-          
-        },
-        (error) => {
-          // display an error if we cant get the users position
-          console.error('Error getting user location:', error);
-        }
-      );
-    }
-    else {
-      // display an error if not supported
-      console.error('Geolocation is not supported by this browser.');
-    }
+
+  type Coordinates = {
+    long: number;
+    lat: number;
+  };
+
+  const getUserLocation = async ():Promise<Coordinates> => {
+    const pos = await new Promise<GeolocationPosition>((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(resolve, reject);
+    });
+
+    return {
+      long: pos.coords.longitude,
+      lat: pos.coords.latitude,
+    };
 
   }
 
@@ -45,10 +40,10 @@ function Landing() {
     // console.log("isRequested ==> ", isRequested);
   }, [])
 
-  function onGetCurrentLocation() {
-    getUserLocation();
+  async function onGetCurrentLocation() {
+    let userlocation = await getUserLocation();
     console.log(userLocation); // Use this for user lat and long
-    navigate('/Preference', { state: { lat: 1.2976174485362484, lng: 103.85488811330647 } })
+    navigate('/Preference', { state: { lat: userlocation.lat, lng: userlocation.long } })
   }
 
 
