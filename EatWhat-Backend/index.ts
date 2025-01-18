@@ -46,7 +46,7 @@ app.get("/api/placeDetails", async (req: Request, res: Response) => {
             {
                 params: {
                     fields:
-                        "id,types,displayName,rating,location,shortFormattedAddress,priceLevel,priceRange,attributions,reviews,websiteUri,currentOpeningHours,nationalPhoneNumber",
+                        "id,types,displayName,rating,location,photos,shortFormattedAddress,priceLevel,priceRange,attributions,reviews,websiteUri,currentOpeningHours,nationalPhoneNumber",
                     key: process.env.GOOGLE_API_KEY,
                 },
             }
