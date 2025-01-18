@@ -15,6 +15,10 @@ function Landing() {
     // console.log("isRequested ==> ", isRequested);
   },[])
 
+  function onGetCurrentLocation() {
+    navigate('/Preference',{ state: { lat: 1.2976174485362484, lng: 103.85488811330647 }})
+  }
+
 
   return (
     <>
@@ -31,7 +35,7 @@ function Landing() {
 
         </div>
         <div className='absolute bottom-12 flex flex-col w-full items-center'>
-          <button className=' font-bold p-2 text-xl rounded-3xl w-11/12 bg-customOrange-dark text-white hover:bg-customOrange-light '>Get Location</button>
+          <button onClick={() => {onGetCurrentLocation()}} className=' font-bold p-2 text-xl rounded-3xl w-11/12 bg-customOrange-dark text-white hover:bg-customOrange-light '>Get Location</button>
           <Link to='/Map' className='mt-5 text-orange-400 hover:bg-customOrange-dark hover:text-white  border border-orange-400 p-2 rounded-3xl text-xl w-11/12 flex  justify-center' >
             <button >Enter Location Manually</button>
           </Link>

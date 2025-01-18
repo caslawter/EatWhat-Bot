@@ -1,5 +1,5 @@
 import React from 'react'
-import { BackButton, MainButton, useWebApp } from '@vkruglikov/react-telegram-web-app';
+import { BackButton, useWebApp } from '@vkruglikov/react-telegram-web-app';
 import { useNavigate } from 'react-router-dom';
 
 
