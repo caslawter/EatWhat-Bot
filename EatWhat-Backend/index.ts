@@ -18,7 +18,7 @@ app.get("/", (req: Request, res: Response) => {
 app.get("/api/placeDetails", async (req: Request, res: Response) => {
     try {
         const { placeID } = req.query;
-        console.log(placeID);
+        console.log("placeID ==> ", placeID);
 
         const response = await axios.get(
             `https://places.googleapis.com/v1/places/${placeID}`,

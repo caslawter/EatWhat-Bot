@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "./App.css";
+// import "./App.css";
 import axios from "axios";
 import React from "react";
 import { useWebApp } from "@vkruglikov/react-telegram-web-app";
@@ -16,7 +16,6 @@ import RestaurantList from "./pages/RestaurantList";
 import RestaurantDetail from "./pages/RestaurantDetail";
 
 function App() {
-  const [count, setCount] = useState(0);
   const [colorScheme, themeParams] = useThemeParams();
   const WebApp = useWebApp();
 
