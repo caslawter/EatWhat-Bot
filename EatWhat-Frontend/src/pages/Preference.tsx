@@ -130,7 +130,7 @@ const Preference = (): JSX.Element => {
         />
       </Box>
       <MainButton
-        text="Choose this location"
+        text="Get Restaurants!"
         onClick={() => { navigate('/RestaurantList', { state: { lat, lng } }) }}
       />
     </div>
