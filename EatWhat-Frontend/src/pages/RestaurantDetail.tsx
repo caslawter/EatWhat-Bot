@@ -14,20 +14,33 @@ function RestaurantDetail() {
   const { id } = useParams();
   console.log("id ==> ", id);
 
-  const fetchData = () => {
-    axios
-      .get(`${import.meta.env.VITE_BACKEND_PORT}/api/placeDetails`, {
-        params: {
-          placeID: id,
-        },
-      })
-      .then((response) => {
-        setDetail(response.data);
-      })
-      .catch((err) => {
-        console.error("error in fetching restaurant details: ", err);
-      });
+  const fetchData = async () => {
+    let placeResponse;
+    let imageResponse;
+    try {
+      // First API call
+      placeResponse = await axios.get(
+        `${import.meta.env.VITE_BACKEND_PORT}/api/placeDetails`,
+        {
+          params: {
+            placeID: id,
+          },
+        }
+      );
+      const placeData = placeResponse.data;
+      // query for second response
+      imageResponse = await axios.get(`${import.meta.env.VITE_BACKEND_PORT}/${placeData[0].name}/media`)
+      console.log("imageResponse ==> ", imageResponse);
+  
+      // Update the state with the response data
+      setDetail(placeData);
+    } catch (err) {
+      // Handle any errors
+      console.error("Error in fetching restaurant or image details: ", err);
+    }
+
   };
+  
   useEffect(() => {
     fetchData();
   }, []);
