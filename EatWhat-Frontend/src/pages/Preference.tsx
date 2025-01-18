@@ -15,6 +15,7 @@ import {
   Button,
   Box,
   Stack,
+  Typography,
 } from "@mui/material";
 import { ClassNames } from "@emotion/react";
 
@@ -143,6 +144,9 @@ const Preference = (): JSX.Element => {
           Choose Your Preferences!
         </h2>
         <Box className="p-2 mb-10">
+          <Typography variant="h5" color="black">
+            Dietary
+          </Typography>
           <FormGroup className="mb-5">
             <FormControlLabel
               control={
@@ -225,7 +229,9 @@ const Preference = (): JSX.Element => {
               label="Special Diet"
             />
           </FormGroup>
-
+          <Typography variant="h5" color="black">
+            Cuisine
+          </Typography>
           <FormGroup className="mb-5">
             <FormControlLabel
               control={
@@ -402,25 +408,25 @@ const Preference = (): JSX.Element => {
           </div>
         </Box>
         <Box>
-        <Button
-          variant="text"
-          onClick={() => {
-            {
-              navigate("/RestaurantList", {
-                state: {
-                  lat,
-                  lng,
-                  preferences,
-                  priceRange,
-                  radius,
-                },
-              });
-            }
-          }}
-        >
-          Get Restaurants!
-        </Button>
-      </Box>
+          <Button
+            variant="text"
+            onClick={() => {
+              {
+                navigate("/RestaurantList", {
+                  state: {
+                    lat,
+                    lng,
+                    preferences,
+                    priceRange,
+                    radius,
+                  },
+                });
+              }
+            }}
+          >
+            Get Restaurants!
+          </Button>
+        </Box>
 
 
         <MainButton
