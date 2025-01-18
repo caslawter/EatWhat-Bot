@@ -76,24 +76,20 @@ const RestaurantList = (): JSX.Element => {
   const navigate = useNavigate();
   const { state } = useLocation();
   const { lat, lng } = state;
-  console.log(import.meta.env.VITE_BACKEND_PORT);
-  
+
   useEffect(() => {
     async function getGoogleResults() {
       try {
         const results = await axios.get(
-          `https://maps.googleapis.com/maps/api/place/nearbysearch/json`,
+          `${import.meta.env.VITE_BACKEND_PORT}/api/searchArea`,
           {
             params: {
-              location: `${lat},${lng}`,
+              lat: lat,
+              lng: lng,
               radius: 5000,
-              type: "restaurant",
-              key: import.meta.env.VITE_GOOGLE_API_KEY,
-              open_now: true,
-              minprice: 1,
-              maxprice: 1,
-              // keyword: keyword,
-          },
+              min: 1,
+              max: 1,
+            },
           }
         );
   
@@ -108,13 +104,11 @@ const RestaurantList = (): JSX.Element => {
             price_level: number;
           }) => {
             const placeDetailsResponse = await axios.get(
-              `https://places.googleapis.com/v1/places/${estaurant.place_id}`,
+              `${import.meta.env.VITE_BACKEND_PORT}/api/placeDetails`,
               {
                 params: {
-                  fields:
-                      "id,types,displayName,rating,location,shortFormattedAddress,priceLevel,priceRange,attributions,reviews,websiteUri,currentOpeningHours,nationalPhoneNumber",
-                  key: import.meta.env.VITE_GOOGLE_API_KEY,
-              },
+                  placeID: restaurant.place_id,
+                },
               }
             );
   
@@ -163,7 +157,7 @@ const RestaurantList = (): JSX.Element => {
       })}
 
       <Link
-        to="/rng"
+        to="/Map"
         className=" absolute bottom-1 mt-5 text-orange-400 hover:bg-customOrange-dark hover:text-white  border border-orange-400 p-2 rounded-3xl text-xl w-11/12 flex  justify-center"
       >
         <button>Next</button>

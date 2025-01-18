@@ -8,6 +8,7 @@ import Slider from "@mui/material/Slider";
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import Button from '@mui/material/Button';
 
 const Preference = (): JSX.Element => {
   const navigate = useNavigate();
@@ -129,6 +130,7 @@ const Preference = (): JSX.Element => {
           max={4}
         />
       </Box>
+      <Button variant="text" onClick={() => {navigate('/RestaurantList', { state: { lat, lng } })}}>Text</Button>
       <MainButton
         text="Get Restaurants!"
         onClick={() => { navigate('/RestaurantList', { state: { lat, lng } }) }}
