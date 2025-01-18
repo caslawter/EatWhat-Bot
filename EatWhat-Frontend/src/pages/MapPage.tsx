@@ -12,6 +12,7 @@ import {
   useAdvancedMarkerRef,
   AdvancedMarkerRef,
 } from "@vis.gl/react-google-maps";
+import { Button, Stack } from "@mui/material";
 
 const API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
 
@@ -41,6 +42,21 @@ function MapPage() {
             text="Choose this location"
             onClick={() => { navigate('/Preference', { state: { lat: position.lat, lng: position.lng } }) }}
           />}
+          {
+            position && <>
+              {/* Button Above the Map */}
+              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-10">
+                <Button
+                  variant="contained"
+                  color="primary"
+                  className="font-bold"
+                  onClick={() => { navigate('/Preference', { state: { lat: position.lat, lng: position.lng } }) }}
+                >
+                  Button Above Map
+                </Button>
+              </div>
+            </>
+          }
         </Map>
         <MapControl position={ControlPosition.LEFT}>
           <div className="autocomplete-control pt-2 pl-2 min-h-40">
