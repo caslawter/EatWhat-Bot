@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { Wheel as Roulette } from 'react-custom-roulette'
 import {
+  Modal,
+  Card,
+  CardContent,
+  Typography,
   Button,
   Box,
-  Modal,
-  Typography,
+  Stack,
 } from '@mui/material';
+import { FaDollarSign } from "react-icons/fa";
+import { FaStar } from "react-icons/fa6";
+import RestaurantModal from './ResturantModal';
 
 const style = {
   position: 'absolute',
@@ -96,23 +102,8 @@ function Wheel(props: any): JSX.Element {
       <Button variant='text' onClick={handleSpinClick}>
         SPIN
       </Button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            {winner.name}
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            {winner.location}
-          </Typography>
-          <Button variant='contained' onClick={handleClose}>Let's Go!</Button>
-          <Button variant='contained' onClick={handleClose}>Nah</Button>
-        </Box>
-      </Modal>
+      <RestaurantModal restaurant={winner} open={open} setOpen={setOpen} aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description" />
     </>
   ) : (
     <div>Loading...</div>
