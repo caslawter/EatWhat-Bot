@@ -76,7 +76,8 @@ const RestaurantList = (): JSX.Element => {
   const navigate = useNavigate();
   const { state } = useLocation();
   const { lat, lng } = state;
-
+  console.log(import.meta.env.VITE_BACKEND_PORT);
+  
   useEffect(() => {
     async function getGoogleResults() {
       try {
