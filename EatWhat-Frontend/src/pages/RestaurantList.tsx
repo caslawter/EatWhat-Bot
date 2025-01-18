@@ -235,17 +235,28 @@ const RestaurantList = (): JSX.Element => {
       </div>
 
       {/* Next Button */}
-      <Button variant="text" onClick={handleSubmit}>
-        {" "}
-        test!
+      <Button
+        variant="contained" // Use "contained" for a filled button
+        onClick={handleSubmit}
+        fullWidth // Makes the button take the full width of its container
+        sx={{
+          bgcolor: "#FFA500", // Orange background
+          color: "white", // White text
+          fontWeight: "bold", // Bold text
+          "&:hover": {
+            bgcolor: "#FFB84D", // Lighter orange on hover
+          },
+        }}
+      >
+        Add to wheel
       </Button>
-      <MainButton
-        text="Get Restaurants!"
+      {/* <MainButton
+        text="Add to wheel"
         onClick={() => {
           navigate("/restaurantDetail");
         }}
         color='#fb923c'
-      />
+      /> */}
     </div>
 
   );

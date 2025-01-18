@@ -36,6 +36,30 @@ app.get("/", (req: Request, res: Response) => {
     res.send("Welcome to Express & TypeScript Server");
 });
 
+app.get("/api/getPhoto", async (req:Request, res: Response) => {
+    try {
+        const {name} = req.query;
+        console.log(name);
+        
+        const response = await axios.get(
+            `https://places.googleapis.com/v1/${name}/media`,
+            {
+                params: {
+                    maxHeightPx: 400,
+                    maxWidthPx: 400,
+                    key: process.env.GOOGLE_API_KEY,
+                },
+            }
+        );
+        res.status(200).json(response.data);
+
+    } catch (error) {
+        console.log(error);
+        
+        res.status(500).json({ error: error.message });
+    }
+})
+
 app.get("/api/placeDetails", async (req: Request, res: Response) => {
     try {
         const { placeID } = req.query;
