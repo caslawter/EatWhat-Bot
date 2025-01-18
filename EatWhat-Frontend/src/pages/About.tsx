@@ -7,6 +7,7 @@ function About() {
   return (
     <>
       <BackButton onClick={() => navigate(-1)} />
+        
       <div className='relative '>
         <Link to="/" className='font-bold flex gap-2 text-3xl text-customOrange-dark hover:text-customOrange-light hover:underline'>
           <p>&lt;</p>
