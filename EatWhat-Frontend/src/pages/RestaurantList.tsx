@@ -79,6 +79,12 @@ const RestaurantCard = ({
         id={`checkbox-${restaurant.id}`}
         checked={checkedState[restaurant.id] || false}
         onChange={handleCheckboxChange(restaurant.id)}
+        sx={{
+          color: "gray", // Default color
+          "&.Mui-checked": {
+            color: "#FFA500", // Orange color when checked
+          },
+        }}
       />
       {/* <input type="checkbox" id="custom-checkbox" className="" /> */}
     </div>
