@@ -3,7 +3,7 @@ import { BackButton, MainButton, useWebApp } from '@vkruglikov/react-telegram-we
 import { useNavigate } from 'react-router-dom';
 
 
-function Map() {
+function MapPage() {
   const navigate = useNavigate();
   return (
     <div>
@@ -13,4 +13,4 @@ function Map() {
   )
 }
 
-export default Map
+export default MapPage

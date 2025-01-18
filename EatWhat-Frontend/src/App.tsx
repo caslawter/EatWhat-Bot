@@ -11,7 +11,7 @@ import { Routes, Route } from "react-router-dom";
 import Landing from "./pages/Landing";
 import About from "./pages/About";
 import Preference from "./pages/Preference";
-import Map from "./pages/Map";
+import MapPage from "./pages/MapPage";
 import RestaurantList from "./pages/RestaurantList";
 import RestaurantDetail from "./pages/RestaurantDetail";
 
@@ -37,7 +37,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Landing />} />
       <Route path="/about" element={<About />} />
-      <Route path="/map" element={<Map />} />
+      <Route path="/map" element={<MapPage />} />
       <Route path="/preference" element={<Preference />} />
       <Route path="/restaurantList" element={<RestaurantList />} />
       <Route path="/restaurantList/:id" element={<RestaurantDetail />} />
