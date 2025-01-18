@@ -81,15 +81,18 @@ const RestaurantList = (): JSX.Element => {
     async function getGoogleResults() {
       try {
         const results = await axios.get(
-          `${import.meta.env.VITE_BACKEND_PORT}/api/searchArea`,
+          `https://maps.googleapis.com/maps/api/place/nearbysearch/json`,
           {
             params: {
-              lat: lat,
-              lng: lng,
+              location: `${lat},${lng}`,
               radius: 5000,
-              min: 1,
-              max: 1,
-            },
+              type: "restaurant",
+              key: import.meta.env.VITE_GOOGLE_API_KEY,
+              open_now: true,
+              minprice: 1,
+              maxprice: 1,
+              // keyword: keyword,
+          },
           }
         );
   
@@ -104,11 +107,13 @@ const RestaurantList = (): JSX.Element => {
             price_level: number;
           }) => {
             const placeDetailsResponse = await axios.get(
-              `${import.meta.env.VITE_BACKEND_PORT}/api/placeDetails`,
+              `https://places.googleapis.com/v1/places/${estaurant.place_id}`,
               {
                 params: {
-                  placeID: restaurant.place_id,
-                },
+                  fields:
+                      "id,types,displayName,rating,location,shortFormattedAddress,priceLevel,priceRange,attributions,reviews,websiteUri,currentOpeningHours,nationalPhoneNumber",
+                  key: import.meta.env.VITE_GOOGLE_API_KEY,
+              },
               }
             );
   
@@ -157,7 +162,7 @@ const RestaurantList = (): JSX.Element => {
       })}
 
       <Link
-        to="/Map"
+        to="/rng"
         className=" absolute bottom-1 mt-5 text-orange-400 hover:bg-customOrange-dark hover:text-white  border border-orange-400 p-2 rounded-3xl text-xl w-11/12 flex  justify-center"
       >
         <button>Next</button>

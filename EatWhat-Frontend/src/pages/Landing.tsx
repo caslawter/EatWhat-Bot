@@ -23,15 +23,20 @@ function Landing() {
   };
 
   const getUserLocation = async ():Promise<Coordinates> => {
-    const pos = await new Promise<GeolocationPosition>((resolve, reject) => {
-      navigator.geolocation.getCurrentPosition(resolve, reject);
-    });
-
-    return {
-      long: pos.coords.longitude,
-      lat: pos.coords.latitude,
-    };
-
+    try {
+      const pos = await new Promise<GeolocationPosition>((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(resolve, reject);
+      });
+  
+      return {
+        long: pos.coords.longitude,
+        lat: pos.coords.latitude,
+      };
+    } catch (error) {
+      console.error("Error retrieving user location:", error);
+      alert("Unable to retrieve user location. Please enable location services or manually input the location.")
+      throw new Error("Unable to retrieve user location. Please enable location services and try again.");
+    }
   }
 
   // console.log(window.Telegram.WebApp);

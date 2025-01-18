@@ -72,11 +72,11 @@ app.get("/api/searchArea", async (req: Request, res: Response) => {
     }
 });
 
-bot.start(async ctx => {
-    await ctx.reply("In order to help you decide where to eat, please allow location permissions when prompted as you press the link!\n");
-    await ctx.reply(link("Link", "https://t.me/kez_testbot/testapp"));
-})
-bot.launch()
+// bot.start(async ctx => {
+//     await ctx.reply("In order to help you decide where to eat, please allow location permissions when prompted as you press the link!\n");
+//     await ctx.reply(link("Link", "https://t.me/kez_testbot/testapp"));
+// })
+// bot.launch()
 
 // Enable graceful stop
 process.once('SIGINT', () => bot.stop('SIGINT'))
