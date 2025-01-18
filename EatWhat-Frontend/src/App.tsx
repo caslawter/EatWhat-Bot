@@ -14,6 +14,7 @@ import Preference from "./pages/Preference";
 import MapPage from "./pages/MapPage";
 import RestaurantList from "./pages/RestaurantList";
 import RestaurantDetail from "./pages/RestaurantDetail";
+import RNG from "./pages/RNG";
 
 function App() {
   const [colorScheme, themeParams] = useThemeParams();
@@ -41,6 +42,7 @@ function App() {
       <Route path="/preference" element={<Preference />} />
       <Route path="/restaurantList" element={<RestaurantList />} />
       <Route path="/restaurantList/:id" element={<RestaurantDetail />} />
+      <Route path="/rng" element={<RNG/>} />
     </Routes>
   );
 }
