@@ -1,9 +1,16 @@
 import React from 'react'
+import { BackButton, MainButton, useWebApp } from '@vkruglikov/react-telegram-web-app';
+import { useNavigate } from 'react-router-dom';
 
-function map() {
+
+function Map() {
+  const navigate = useNavigate();
   return (
-    <div>map</div>
+    <div>
+      <BackButton onClick={() => navigate(-1)}/>
+      <div>map</div>
+    </div>
   )
 }
 
-export default map
+export default Map
