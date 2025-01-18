@@ -5,6 +5,9 @@ import axios from "axios";
 import { BackButton, useWebApp } from "@vkruglikov/react-telegram-web-app";
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 
 const Preference = (): JSX.Element => {
   const navigate = useNavigate();
@@ -15,7 +18,7 @@ const Preference = (): JSX.Element => {
 
   const [value, setValue] = React.useState<number[]>([1,2]);
   const minDistance = 1;
-  const handleChange1 = (
+  const handleChange = (
     event: Event,
     newValue: number | number[],
     activeThumb: number,
@@ -81,6 +84,26 @@ const Preference = (): JSX.Element => {
       <BackButton onClick={() => navigate(-1)} />
       <Box sx={{ height: 100 }}></Box>
       <Box sx={{ width: 500, height: 500 }}>
+
+    <FormGroup>
+      <FormControlLabel control={<Checkbox defaultChecked />} label="Vegan" />
+      <FormControlLabel control={<Checkbox />} label="Vegetarian" />
+      <FormControlLabel control={<Checkbox />} label="Halal" />
+      <FormControlLabel control={<Checkbox defaultChecked />} label="No beef" />
+      <FormControlLabel control={<Checkbox />} label="Special Diet" />
+    </FormGroup>
+
+
+    <FormGroup>
+      <FormControlLabel control={<Checkbox defaultChecked />} label="Chinese" />
+      <FormControlLabel control={<Checkbox />} label="Japanese" />
+      <FormControlLabel control={<Checkbox />} label="Korean" />
+      <FormControlLabel control={<Checkbox defaultChecked />} label="Italian" />
+      <FormControlLabel control={<Checkbox />} label="Mexican" />
+      <FormControlLabel control={<Checkbox />} label="Fast Food" />
+      <FormControlLabel control={<Checkbox />} label="Dessert" />
+    </FormGroup>
+
         <Slider
           aria-label="Radius"
           defaultValue={1000}
@@ -96,7 +119,7 @@ const Preference = (): JSX.Element => {
         <Slider
           getAriaLabel={() => "Price range"}
           value={value}
-          onChange={handleChange1}
+          onChange={handleChange}
           valueLabelDisplay="auto"
           getAriaValueText={valuetext}
           marks={price_range}
