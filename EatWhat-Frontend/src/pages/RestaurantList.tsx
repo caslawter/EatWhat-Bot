@@ -136,7 +136,13 @@ const RestaurantList = (): JSX.Element => {
         location: restaurant.location,
         isChecked: true, // Since we're already filtering, isChecked is true
       }));
-    navigate("/rng", { state: { formData } });
+  
+    // Check if more than 2 restaurants are selected
+    if (formData.length >= 2) {
+      navigate("/rng", { state: { formData } });
+    } else {
+      alert("Please select more than 2 restaurants."); // Validation alert
+    }
   };
 
   useEffect(() => {
