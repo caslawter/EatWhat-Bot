@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { Wheel as Roulette } from 'react-custom-roulette'
 import {
+  Modal,
+  Card,
+  CardContent,
+  Typography,
   Button,
   Box,
-  Modal,
-  Typography,
+  Stack,
 } from '@mui/material';
+import { FaDollarSign } from "react-icons/fa";
+import { FaStar } from "react-icons/fa6";
+import RestaurantModal from './ResturantModal';
 
 const style = {
   position: 'absolute',
@@ -82,37 +88,48 @@ function Wheel(props: any): JSX.Element {
 
   return options.length > 0 ? (
     <>
-      <Roulette
-        mustStartSpinning={mustSpin}
-        prizeNumber={prizeNumber}
-        data={options}
-        fontSize={15}
-        onStopSpinning={() => {
-          setWinner(data[prizeNumber])
-          setMustSpin(false);
-          setOpen(true)
-        }}
-      />
-      <Button variant='text' onClick={handleSpinClick}>
-        SPIN
-      </Button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            {winner.name}
+      <div className="flex flex-col min-h-screen">
+        <Box sx={{
+          display: 'flex',
+          flexDirection: 'column', // Column layout
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: 2, // Adds spacing between text and wheel
+        }}>
+          <Typography variant="h5" color="black">
+            Spin the wheel
           </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            {winner.location}
-          </Typography>
-          <Button variant='contained' onClick={handleClose}>Let's Go!</Button>
-          <Button variant='contained' onClick={handleClose}>Nah</Button>
+          <Roulette
+            mustStartSpinning={mustSpin}
+            prizeNumber={prizeNumber}
+            data={options}
+            fontSize={15}
+            onStopSpinning={() => {
+              setWinner(data[prizeNumber])
+              setMustSpin(false);
+              setOpen(true)
+            }}
+          />
         </Box>
-      </Modal>
+
+        <Button
+          variant="contained"
+          onClick={handleSpinClick}
+          sx={{
+            top: 50,
+            bgcolor: "#FFA500", // Orange background
+            color: "white", // White text
+            fontWeight: "bold",
+            "&:hover": {
+              bgcolor: "#FFB84D", // Lighter orange on hover
+            },
+          }}
+        >
+          SPIN
+        </Button>
+        <RestaurantModal restaurant={winner} open={open} setOpen={setOpen} aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description" />
+      </div>
     </>
   ) : (
     <div>Loading...</div>

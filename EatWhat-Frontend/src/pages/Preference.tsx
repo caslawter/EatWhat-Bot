@@ -15,6 +15,7 @@ import {
   Button,
   Box,
   Stack,
+  Typography,
 } from "@mui/material";
 import { ClassNames } from "@emotion/react";
 
@@ -143,6 +144,9 @@ const Preference = (): JSX.Element => {
           Choose Your Preferences!
         </h2>
         <Box className="p-2 mb-10">
+          <Typography variant="h5" color="black">
+            Dietary
+          </Typography>
           <FormGroup className="mb-5">
             <FormControlLabel
               control={
@@ -225,7 +229,9 @@ const Preference = (): JSX.Element => {
               label="Special Diet"
             />
           </FormGroup>
-
+          <Typography variant="h5" color="black">
+            Cuisine
+          </Typography>
           <FormGroup className="mb-5">
             <FormControlLabel
               control={
@@ -402,10 +408,9 @@ const Preference = (): JSX.Element => {
           </div>
         </Box>
         <Box>
-        <Button
-          variant="text"
-          onClick={() => {
-            {
+          <Button
+            variant="contained"
+            onClick={() => {
               navigate("/RestaurantList", {
                 state: {
                   lat,
@@ -415,22 +420,35 @@ const Preference = (): JSX.Element => {
                   radius,
                 },
               });
-            }
-          }}
-        >
-          Get Restaurants!
-        </Button>
-      </Box>
-
+            }}
+            fullWidth
+            sx={{
+              bgcolor: "#FFA500", // Orange background
+              color: "white", // White text
+              fontWeight: "bold",
+              "&:hover": {
+                bgcolor: "#FFB84D", // Lighter orange on hover
+              },
+            }}
+          >
+            Get Restaurants!
+          </Button>
+        </Box>
 
         <MainButton
           text="Get Restaurants!"
           onClick={() => {
             navigate("/restaurantList", {
-              state: { lat, lng, preferences, priceRange, radius },
+              state: {
+                lat,
+                lng,
+                preferences,
+                priceRange,
+                radius,
+              },
             });
           }}
-          color='#fb923c'
+          color="#fb923c"
         />
       </div>
     </>
