@@ -13,7 +13,7 @@ import { input } from "flowbite";
 
 interface RestaurantObject {
   // id:string;
-  id:string;
+  id: string;
   name: string;
   location: string;
   rating: number;
@@ -21,7 +21,7 @@ interface RestaurantObject {
   type: string | null;
 }
 
-const RestaurantCard = ({restaurant}): JSX.Element => {
+const RestaurantCard = ({ restaurant }): JSX.Element => {
   const [checked, setChecked] = useState<boolean>(false);
   // const restaurant_1: RestaurantObject = {
   //   name: "muthu curry",
@@ -37,23 +37,31 @@ const RestaurantCard = ({restaurant}): JSX.Element => {
         {/* top and down */}
         <div className="relative flex item-center text-center ">
           {/* top */}
-          <h3 className="font-bold text-lg ">{restaurant.name}</h3>
+          <h3 className="font-bold max-w-full text-lg inline-block text-ellipsis w-11/12 overflow-hidden  text-left">
+            {restaurant.name}
+          </h3>
 
-          <div className="flex items-center absolute right-0 h-full">
+          <div className="flex items-center h-full">
             <FaStar className="text-customOrange-dark" />
             <p>{restaurant.rating}</p>
           </div>
         </div>
-        {restaurant.type?<p>{restaurant.type}</p>:<p>Null</p>}
+        {restaurant.type ? <p>{restaurant.type}</p> : <p>Nil</p>}
         <p>{restaurant.location}</p>
         <div className="flex items-center">
-          <FaDollarSign className="text-customOrange-dark" />
-          <FaDollarSign className="text-gray-300" />
-          <FaDollarSign className="text-gray-300" />
-          <FaDollarSign className="text-gray-300" />
+          {/* depending on price level, color the dollar sign */}
+          {[1, 2, 3, 4].map((level) => (
+            <FaDollarSign
+              key={level}
+              className={
+                level <= restaurant.priceLevel
+                  ? "text-customOrange-dark"
+                  : "text-gray-300"
+              }
+            />
+          ))}
         </div>
         {/* Down */}
-        
       </div>
 
       <input type="checkbox" id="custom-checkbox" className="" />
@@ -92,76 +100,83 @@ const RestaurantList = (): JSX.Element => {
             },
           }
         );
-  
+
         console.log("results ==> ", results);
-  
+
         const restaurants = await Promise.all(
-          results.data.map(async (restaurant: {
-            place_id: string;
-            name: string;
-            vicinity: string;
-            rating: number;
-            price_level: number;
-          }) => {
-            const placeDetailsResponse = await axios.get(
-              `${import.meta.env.VITE_BACKEND_PORT}/api/placeDetails`,
-              {
-                params: {
-                  placeID: restaurant.place_id,
-                },
-              }
-            );
-  
-            console.log("placeDetailsResponse ==> ", placeDetailsResponse);
-  
-            let cuisineType = "";
-            for (const type of placeDetailsResponse.data.types) {
-              for (const cuisine of cuisineTypes) {
-                if (type.toLowerCase().includes(cuisine)) {
-                  cuisineType = cuisine;
-                  break;
+          results.data.map(
+            async (restaurant: {
+              place_id: string;
+              name: string;
+              vicinity: string;
+              rating: number;
+              price_level: number;
+            }) => {
+              const placeDetailsResponse = await axios.get(
+                `${import.meta.env.VITE_BACKEND_PORT}/api/placeDetails`,
+                {
+                  params: {
+                    placeID: restaurant.place_id,
+                  },
                 }
+              );
+
+              console.log("placeDetailsResponse ==> ", placeDetailsResponse);
+
+              let cuisineType = "";
+              for (const type of placeDetailsResponse.data.types) {
+                for (const cuisine of cuisineTypes) {
+                  if (type.toLowerCase().includes(cuisine)) {
+                    cuisineType = cuisine;
+                    break;
+                  }
+                }
+                if (cuisineType) break;
               }
-              if (cuisineType) break;
+
+              return {
+                id: restaurant.place_id,
+                name: restaurant.name,
+                location: restaurant.vicinity,
+                rating: restaurant.rating,
+                priceLevel: restaurant.price_level,
+                type: cuisineType,
+              } as RestaurantObject;
             }
-  
-            return {
-              id:restaurant.place_id,
-              name: restaurant.name,
-              location: restaurant.vicinity,
-              rating: restaurant.rating,
-              priceLevel: restaurant.price_level,
-              type: cuisineType,
-            } as RestaurantObject;
-          })
+          )
         );
-  
+
         console.log("restaurantList ==> ", restaurants);
         setRestaurantList(restaurants); // Replace the state with the new data
       } catch (error) {
         console.log(error);
       }
     }
-  
+
     getGoogleResults();
   }, []);
-  
 
   console.log("restaurantList ==> ", restaurantList);
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       <BackButton onClick={() => navigate(-1)} />
 
-      {restaurantList.map((restaurant)=>{
-        return <RestaurantCard restaurant={restaurant} key={restaurant.id} />
-      })}
+      {/* Restaurant List Container */}
+      <div className="flex-grow overflow-y-auto">
+        {restaurantList.map((restaurant) => {
+          return <RestaurantCard restaurant={restaurant} key={restaurant.id} />;
+        })}
+      </div>
 
-      <Link
-        to="/Map"
-        className=" absolute bottom-1 mt-5 text-orange-400 hover:bg-customOrange-dark hover:text-white  border border-orange-400 p-2 rounded-3xl text-xl w-11/12 flex  justify-center"
-      >
-        <button>Next</button>
-      </Link>
+      {/* Next Button */}
+      <div className="flex justify-end p-4">
+        <Link
+          to="/Map"
+          className="font-bold p-2 text-xl rounded-3xl w-full bg-customOrange-dark text-white hover:bg-customOrange-light text-center"
+        >
+          Next
+        </Link>
+      </div>
     </div>
   );
 };
