@@ -31,10 +31,11 @@ function RestaurantDetail() {
         }
       );
       const placeData = placeResponse.data;
-      console.log(placeResponse.data);
 
       setDetail(placeData);
       setReviews(placeResponse.data.reviews)
+      console.log(placeResponse.data.reviews);
+
       // query for second response
       imageResponse = await axios.post(`${import.meta.env.VITE_BACKEND_PORT}/api/getPhoto`, {
         "name": placeData.photos[0].name
@@ -46,6 +47,8 @@ function RestaurantDetail() {
 
     } catch (err) {
       // Handle any errors
+      console.log(err);
+
       console.error("Error in fetching restaurant or image details: ", err);
     }
 
@@ -67,12 +70,27 @@ function RestaurantDetail() {
           }
           <h2 className="text-lg font-bold">{detail.displayName.text}</h2>
           {/* price range  */}
-          <div className="flex items-center text-center">
-            <FaDollarSign className="text-customOrange-dark mr-1" />
-            {detail.priceRange.startPrice.units}
-            <BsDash />
-            {detail.priceRange.endPrice.units}
-          </div>
+          {/* <div className="flex items-center text-center">
+            {
+              detail.priceRange ? (<>
+
+              {
+                detail.priceRange.startPrice ?<div> <FaDollarSign className="text-customOrange-dark mr-1" />
+                {detail.priceRange.endPrice.units} 
+                </div>: <></>
+              }
+
+              {
+                detail.priceRange.endPrice ?<> <BsDash />
+                {detail.priceRange.endPrice.units} </>: <></>
+              }
+
+              </>
+
+              ): <></>
+            }
+
+          </div> */}
           {/* rating  */}
           <div className="flex items-center">
             <FaStar className="text-customOrange-dark mr-1" />
@@ -88,52 +106,52 @@ function RestaurantDetail() {
             Find out more
           </a>
           {/* review  */}
-    <Box>
-      {reviews.map((review, index: number) => (
-        <Card
-          key={index}
-          sx={{
-            mb: 2,
-            p: 1,
-            bgcolor: "#333", // Dark background
-            color: "#FFA500", // Orange text
-            border: "1px solid #FFA500", // Optional: border to match the orange theme
-          }}
-        >
-          <CardContent>
-          <Typography
-              variant="body1"
-              gutterBottom
-              sx={{
-                color: "#FFA500", // Orange text for review
-              }}
-            >
-              {review.authorAttribution.displayName}
-            </Typography>
-            <Typography
-              variant="body1"
-              gutterBottom
-              sx={{
-                color: "#FFA500", // Orange text for review
-              }}
-            >
-              {review.originalText.text}
-            </Typography>
-            <Stack direction="row" alignItems="center" spacing={1}>
-              <FaStar style={{ color: "#FFA500" }} /> {/* Orange star */}
-              <Typography
-                variant="body2"
+          <Box>
+            {reviews.map((review, index: number) => (
+              <Card
+                key={index}
                 sx={{
-                  color: "#FFA500", // Orange text for rating
+                  mb: 2,
+                  p: 1,
+                  bgcolor: "#333", // Dark background
+                  color: "#FFA500", // Orange text
+                  border: "1px solid #FFA500", // Optional: border to match the orange theme
                 }}
               >
-                {review.rating}
-              </Typography>
-            </Stack>
-          </CardContent>
-        </Card>
-      ))}
-    </Box>
+                <CardContent>
+                  <Typography
+                    variant="body1"
+                    gutterBottom
+                    sx={{
+                      color: "#FFA500", // Orange text for review
+                    }}
+                  >
+                    {review.authorAttribution.displayName}
+                  </Typography>
+                  <Typography
+                    variant="body1"
+                    gutterBottom
+                    sx={{
+                      color: "#FFA500", // Orange text for review
+                    }}
+                  >
+                    {review.originalText.text}
+                  </Typography>
+                  <Stack direction="row" alignItems="center" spacing={1}>
+                    <FaStar style={{ color: "#FFA500" }} /> {/* Orange star */}
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        color: "#FFA500", // Orange text for rating
+                      }}
+                    >
+                      {review.rating}
+                    </Typography>
+                  </Stack>
+                </CardContent>
+              </Card>
+            ))}
+          </Box>
         </div>
       ) : (
         <div>loading</div>
