@@ -161,7 +161,7 @@ const RestaurantList = (): JSX.Element => {
     async function getGoogleResults() {
       try {
         const results = await axios.get(
-          `${import.meta.env.VITE_BACKEND_PORT}/api/searchArea`,
+          `${import.meta.env.VITE_BACKEND_PORT}/searchArea`,
           {
             params: {
               lat: lat,
@@ -186,7 +186,7 @@ const RestaurantList = (): JSX.Element => {
             }) => {
               const placeDetailsResponse = await axios.get(
                 `${import.meta.env.VITE_BACKEND_PORT
-                }/api/placeDetails`,
+                }/placeDetails`,
                 {
                   params: {
                     placeID: restaurant.place_id,
