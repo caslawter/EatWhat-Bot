@@ -1,4 +1,4 @@
-import express, { Express, Request, Response, Application } from "express";
+import express, { Express, Request, Response, Application, json } from "express";
 const { message } = require('telegraf/filters')
 import dotenv from "dotenv";
 import cors from "cors";
@@ -21,6 +21,7 @@ const app: Application = express();
 const port = process.env.PORT || 8000;
 app.use(cors())
 app.use('*', cors({ origin: true, credentials: true }));
+app.use(json())
 // app.use(cors({
 //     origin: 'https://charmed-tiger-open.ngrok-free.app',
 //     methods: 'GET,POST,PUT,DELETE,OPTIONS',
@@ -31,15 +32,17 @@ app.use('*', cors({ origin: true, credentials: true }));
   app.use((req, res, next) => {
     res.header('Access-Control-Allow-Private-Network', 'true'); // Enable private network access
     next();
-  });;
+  });
 
 app.get("/", (req: Request, res: Response) => {
     res.send("Welcome to Express & TypeScript Server");
 });
 
-app.get("/api/getPhoto", async (req:Request, res: Response) => {
+app.post("/api/getPhoto", async (req:Request, res: Response) => {
     try {
-        const {name} = req.query;
+        console.log(req.body);
+        
+        const name = req.body.name;
         console.log(name);
         
         const response = await axios.get(
@@ -48,6 +51,7 @@ app.get("/api/getPhoto", async (req:Request, res: Response) => {
                 params: {
                     maxHeightPx: 400,
                     maxWidthPx: 400,
+                    skipHttpRedirect:true,
                     key: process.env.GOOGLE_API_KEY,
                 },
             }

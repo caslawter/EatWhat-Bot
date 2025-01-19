@@ -348,7 +348,7 @@ const Preference = (): JSX.Element => {
           </FormGroup>
 
           <div>
-            <p>Budget</p>
+            <p>Distance</p>
             <Slider
               aria-label="Radius"
               value={radius}
@@ -357,6 +357,7 @@ const Preference = (): JSX.Element => {
               step={1000}
               min={1000}
               max={5000}
+              marks={radius_range}
               sx={{
                 color: "orange",
                 "& .MuiSlider-thumb": {
@@ -368,12 +369,15 @@ const Preference = (): JSX.Element => {
                 "& .MuiSlider-rail": {
                   backgroundColor: "lightgray",
                 },
+                "& .MuiSlider-markLabel": {
+                  color: "orange",
+                },
               }}
             />
           </div>
 
           <div>
-            <p>Distance</p>
+            <p>Budget</p>
             <Slider
               className="text-white"
               getAriaLabel={() => "Price range"}

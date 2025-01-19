@@ -46,62 +46,6 @@ const RestaurantCard = ({
 
       {/* <div className="border-b pb-2 border-white flex items-center w-full justify-between align-middle mb-5"> */}
       {/* left and right */}
-      <div className="flex flex-col gap-2">
-        {/* top and down */}
-        <div className="relative flex items-center justify-between">
-          {/* Link and Restaurant Name */}
-          <Link to={`/restaurantList/${restaurant.id}`} className="flex-grow">
-            <h3 className="font-bold max-w-full text-lg inline-block text-ellipsis overflow-hidden w-full text-left">
-              {restaurant.name}
-            </h3>
-          </Link>
-
-          {/* Rating */}
-          <div className="flex items-center h-full ml-4">
-            <FaStar className="text-customOrange-dark" />
-            <p className="ml-1">{restaurant.rating}</p>
-          </div>
-
-          {/* Checkbox */}
-          <div>
-            <Checkbox
-              name={restaurant.name}
-              id={`checkbox-${restaurant.id}`}
-              checked={checkedState[restaurant.id] || false}
-              onChange={handleCheckboxChange(restaurant.id)}
-              sx={{
-                color: "gray", // Default color
-                "&.Mui-checked": {
-                  color: "#FFA500", // Orange color when checked
-                },
-              }}
-            />
-          </div>
-
-        </div>
-
-        {/* Additional Info */}
-        <div>
-          {restaurant.type ? <p>{restaurant.type}</p> : <p>Nil</p>}
-          <p>{restaurant.location}</p>
-          <div className="flex items-center">
-            {/* Depending on price level, color the dollar sign */}
-            {[1, 2, 3, 4].map((level) => (
-              <FaDollarSign
-                key={level}
-                className={
-                  level <= restaurant.priceLevel
-                    ? "text-customOrange-dark"
-                    : "text-gray-300"
-                }
-              />
-            ))}
-          </div>
-        </div>
-
-      </div>
-      {/* <input type="checkbox" id="custom-checkbox" className="" /> */}
-      {/* </div> */}return (
       <>
         <div className="flex flex-col gap-2 w-full">
           {/* Top Section */}
@@ -155,7 +99,6 @@ const RestaurantCard = ({
           </div>
         </div>
       </>
-      );
     </>
   );
 };
