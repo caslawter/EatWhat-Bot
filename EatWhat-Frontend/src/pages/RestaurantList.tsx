@@ -11,7 +11,6 @@ import {
   useWebApp,
 } from "@vkruglikov/react-telegram-web-app";
 import type { ModalOptions, ModalInterface } from "flowbite";
-import { input } from "flowbite";
 import { Button, Checkbox } from "@mui/material";
 
 
@@ -172,6 +171,24 @@ const RestaurantList = (): JSX.Element => {
             },
           }
         );
+
+        // const resultss = await fetch(
+        //   `${import.meta.env.VITE_BACKEND_PORT}/api/searchArea`,
+        //   {
+        //     method: "GET",
+        //     headers: {
+        //       "accept": "application/json",
+        //       "content-type": "application/json"
+        //     },
+        //     body: JSON.stringify({
+        //       lat: lat,
+        //       lng: lng,
+        //       radius: radius,
+        //       min: priceRange[0],
+        //       max: priceRange[1],
+        //     })
+        //   }
+        // );
 
         console.log("results ==> ", results);
 

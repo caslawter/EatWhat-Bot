@@ -25,12 +25,12 @@ function DialogueBox() {
           </div>
           <p className='mb-6'>68 Orchard Rd, Singapore 238839</p>
           <div className='flex flex-col gap-2'>
-            <Link>
+            <Link to={''}>
               <button className='bg-customOrange-dark text-white font-bold hover:bg-customOrange-light p-2 rounded-3xl w-44'>
                 Let's Go!
               </button>
             </Link>
-            <Link>
+            <Link to={''}>
               <button>
                 Nah
               </button>
