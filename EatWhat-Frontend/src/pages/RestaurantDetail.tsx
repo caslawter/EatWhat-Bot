@@ -23,7 +23,7 @@ function RestaurantDetail() {
     try {
       // First API call
       placeResponse = await axios.get(`
-      ${import.meta.env.VITE_BACKEND_PORT}/api/placeDetails`,
+      ${import.meta.env.VITE_BACKEND_PORT}/placeDetails`,
         {
           params: {
             placeID: id,
@@ -37,7 +37,7 @@ function RestaurantDetail() {
       console.log(placeResponse.data.reviews);
 
       // query for second response
-      imageResponse = await axios.post(`${import.meta.env.VITE_BACKEND_PORT}/api/getPhoto`, {
+      imageResponse = await axios.post(`${import.meta.env.VITE_BACKEND_PORT}/getPhoto`, {
         "name": placeData.photos[0].name
       })
       console.log(imageResponse.data.photoUri);

@@ -13,7 +13,7 @@ interface ctx extends Context {
 }
 
 //For env File
-dotenv.config({ path: ".env.local" });
+dotenv.config();
 
 const bot = new Telegraf(process.env.BOT_TOKEN)
 
@@ -22,12 +22,13 @@ const port = process.env.PORT || 8000;
 app.use(cors())
 app.use('*', cors({ origin: true, credentials: true }));
 app.use(json())
-// app.use(cors({
-//     origin: 'https://charmed-tiger-open.ngrok-free.app',
-//     methods: 'GET,POST,PUT,DELETE,OPTIONS',
-//     allowedHeaders: ['Content-Type', 'Authorization'],
-//     exposedHeaders: ['Access-Control-Allow-Private-Network']
-//   }));
+app.use(
+    cors({
+      origin: "https://eatwhat-backend-e2izkk66m-kzeezees-projects.vercel.app", // Replace with your frontend origin
+      methods: "GET,POST,PUT,DELETE,OPTIONS",
+      allowedHeaders: "Content-Type,Authorization",
+    })
+  );
   
   app.use((req, res, next) => {
     res.header('Access-Control-Allow-Private-Network', 'true'); // Enable private network access
@@ -35,10 +36,11 @@ app.use(json())
   });
 
 app.get("/", (req: Request, res: Response) => {
-    res.send("Welcome to Express & TypeScript Server");
+    res.send("Express on Vercel");
+    console.log("HELLO");
 });
 
-app.post("/api/getPhoto", async (req:Request, res: Response) => {
+app.get("/getPhoto", async (req:Request, res: Response) => {
     try {
         console.log(req.body);
         
@@ -65,7 +67,7 @@ app.post("/api/getPhoto", async (req:Request, res: Response) => {
     }
 })
 
-app.get("/api/placeDetails", async (req: Request, res: Response) => {
+app.get("/placeDetails", async (req: Request, res: Response) => {
     try {
         const { placeID } = req.query;
         console.log("placeID ==> ", placeID);
@@ -86,7 +88,7 @@ app.get("/api/placeDetails", async (req: Request, res: Response) => {
     }
 });
 
-app.get("/api/searchArea", async (req: Request, res: Response) => {
+app.get("/searchArea", async (req: Request, res: Response) => {
     try {
         const { lat, lng, radius, min, max, keyword } = req.query;
 
@@ -111,15 +113,17 @@ app.get("/api/searchArea", async (req: Request, res: Response) => {
     }
 });
 
-// bot.start(async ctx => {
-//     await ctx.reply("In order to help you decide where to eat, please allow location permissions when prompted as you press the link!\n");
-//     await ctx.reply(link("Link", "https://t.me/kez_testbot/testapp"));
-// })
-// bot.launch()
+bot.start(async ctx => {
+    await ctx.reply("In order to help you decide where to eat, please allow location permissions when prompted as you press the link!\n");
+    await ctx.reply(link("Link", "https://t.me/kez_testbot/testapp"));
+})
+bot.launch()
 
 // Enable graceful stop
 process.once('SIGINT', () => bot.stop('SIGINT'))
 process.once('SIGTERM', () => bot.stop('SIGTERM'))
+
+module.exports = app;
 
 app.listen(port, () => {
     console.log(`Server is firing at http://localhost:${port}`);
